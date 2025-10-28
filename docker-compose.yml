@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  # Service PostgreSQL
+  postgres:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: tp-postgres
+    environment:
+      POSTGRES_USER: tp_user
+      POSTGRES_PASSWORD: tp_password123
+      POSTGRES_DB: tp_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - tp-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tp_user -d tp_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Service Spring Boot (optionnel - à décommenter après)
+  # app:
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile.app
+  #   container_name: tp-app
+  #   environment:
+  #     SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/tp_db
+  #     SPRING_DATASOURCE_USERNAME: tp_user
+  #     SPRING_DATASOURCE_PASSWORD: tp_password123
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     postgres:
+  #       condition: service_healthy
+  #   networks:
+  #     - tp-network
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  tp-network:
+    driver: bridge

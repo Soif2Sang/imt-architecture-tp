@@ -1,0 +1,811 @@
+{
+  "info": {
+    "name": "TP Gestion de Location de Véhicules",
+    "description": "Collection Postman complète pour tester l'API de gestion de location de véhicules",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "client_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "vehicle_id",
+      "value": "1",
+      "type": "string"
+    },
+    {
+      "key": "contract_id",
+      "value": "1",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Clients",
+      "item": [
+        {
+          "name": "Créer un client",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Jean\",\n  \"lastName\": \"Dupont\",\n  \"dateOfBirth\": \"1990-05-15\",\n  \"licenseNumber\": \"1234567890\",\n  \"address\": \"123 Rue de la Paix, Paris\",\n  \"email\": \"jean.dupont@example.com\",\n  \"phone\": \"0612345678\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/clients",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer tous les clients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/clients",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "clients"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer client par lastName",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/clients?lastName=Dupont",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "clients"
+              ],
+              "query": [
+                {
+                  "key": "lastName",
+                  "value": "Dupont"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer client par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/clients/{{client_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                "{{client_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modifier un client",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"Jean-Pierre\",\n  \"lastName\": \"Dupont\",\n  \"dateOfBirth\": \"1990-05-15\",\n  \"licenseNumber\": \"1234567890\",\n  \"address\": \"456 Avenue de la Liberté, Lyon\",\n  \"email\": \"jean-pierre.dupont@example.com\",\n  \"phone\": \"0687654321\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/clients/{{client_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                "{{client_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Supprimer un client",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/clients/{{client_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "clients",
+                "{{client_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Véhicules",
+      "item": [
+        {
+          "name": "Créer un véhicule",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registrationPlate\": \"AB-123-CD\",\n  \"brand\": \"Peugeot\",\n  \"model\": \"3008\",\n  \"motorization\": \"1.5 BlueHDi 130 ch\",\n  \"color\": \"Noir Profond\",\n  \"acquisitionDate\": \"2022-03-15\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer tous les véhicules",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer véhicules disponibles",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles?status=AVAILABLE",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "AVAILABLE"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer véhicules par marque",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles?brand=Peugeot",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles"
+              ],
+              "query": [
+                {
+                  "key": "brand",
+                  "value": "Peugeot"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer véhicules disponibles Peugeot",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles?status=AVAILABLE&brand=Peugeot",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "AVAILABLE"
+                },
+                {
+                  "key": "brand",
+                  "value": "Peugeot"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer véhicule par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles/{{vehicle_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modifier un véhicule",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registrationPlate\": \"AB-456-EF\",\n  \"brand\": \"Renault\",\n  \"model\": \"Clio\",\n  \"motorization\": \"1.0 TCe 100 ch\",\n  \"color\": \"Blanc Glacier\",\n  \"acquisitionDate\": \"2023-06-20\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles/{{vehicle_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Marquer véhicule en panne",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles/{{vehicle_id}}/breakdown",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles",
+                "{{vehicle_id}}",
+                "breakdown"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Marquer véhicule réparé",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles/{{vehicle_id}}/repair",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles",
+                "{{vehicle_id}}",
+                "repair"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Supprimer un véhicule",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/vehicles/{{vehicle_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "vehicles",
+                "{{vehicle_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Contrats",
+      "item": [
+        {
+          "name": "Créer un contrat",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": 1,\n  \"vehicleId\": 1,\n  \"startDate\": \"2025-11-01T10:00:00\",\n  \"endDate\": \"2025-11-08T17:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer tous les contrats",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer contrats en attente",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts?status=PENDING",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer contrats en cours",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts?status=ONGOING",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "ONGOING"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer contrats d'un client",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts?clientId=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer contrats d'un véhicule",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts?vehicleId=1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ],
+              "query": [
+                {
+                  "key": "vehicleId",
+                  "value": "1"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer contrats en retard",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts?status=OVERDUE",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "OVERDUE"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtrer contrats (client + status)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts?clientId=1&status=PENDING",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "1"
+                },
+                {
+                  "key": "status",
+                  "value": "PENDING"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Filtrer contrats (tous les critères)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts?clientId=1&vehicleId=1&status=ONGOING",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts"
+              ],
+              "query": [
+                {
+                  "key": "clientId",
+                  "value": "1"
+                },
+                {
+                  "key": "vehicleId",
+                  "value": "1"
+                },
+                {
+                  "key": "status",
+                  "value": "ONGOING"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Récupérer contrat par ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts/{{contract_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts",
+                "{{contract_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Modifier un contrat",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"clientId\": 2,\n  \"vehicleId\": 2,\n  \"startDate\": \"2025-11-15T09:00:00\",\n  \"endDate\": \"2025-11-22T18:00:00\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts/{{contract_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts",
+                "{{contract_id}}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Approuver un contrat",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts/{{contract_id}}/approve",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts",
+                "{{contract_id}}",
+                "approve"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Terminer un contrat",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts/{{contract_id}}/complete",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts",
+                "{{contract_id}}",
+                "complete"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Marquer contrat en retard",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts/{{contract_id}}/overdue",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts",
+                "{{contract_id}}",
+                "overdue"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Annuler un contrat",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts/{{contract_id}}/cancel",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts",
+                "{{contract_id}}",
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Supprimer un contrat",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/api/v1/contracts/{{contract_id}}",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "v1",
+                "contracts",
+                "{{contract_id}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
